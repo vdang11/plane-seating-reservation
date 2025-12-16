@@ -14,7 +14,11 @@ public class PlaneSeatingReservation {
 
 			int row = Integer.parseInt(seat.substring(0, seat.length() - 1));
 
-			reserved.putIfAbsent(row, new HashSet<>());
+			if (!reserved.containsKey(row)) {
+			    reserved.put(row, new HashSet<>());
+			}
+			
+			reserved.get(row).add(seatCharacter);
 
 			reserved.get(row).add(seatCharacter);
 
@@ -50,8 +54,8 @@ public class PlaneSeatingReservation {
 	}
 	
 	public static void main(String[] args) {
-		String S="1A 2F 1C";
-		int N=2;
+		String S="1A 2F 1C 5A 4G 2A";
+		int N=6;
 		System.out.println(Solution(N, S));
 	}
 }
